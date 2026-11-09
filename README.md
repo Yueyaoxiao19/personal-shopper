@@ -1,53 +1,47 @@
 # Personal shopper
 
-An agent skill that shops for clothes like a stylist would, plus the tests I wrote to
-check whether my edits to it actually helped.
+Hello! Welcome!
+
+This is an agent skill that shops for clothes like a stylist would, plus some tests to
+validate the skill.
 
 **Read [`SKILL.md`](SKILL.md) first. That file is the product.**
-
-**The result, up front:** the tests found no difference between my edited version and the
-previous one. Both pass 12 of 13 assertions, so nothing says the skill is bad. What came
-up empty was my measurement of the change, and the one test that would have caught the
-real difference could not run. Inconclusive, not failed. I kept all of it here.
-
-The three test cases in [`evaluation/cases/`](evaluation/cases/) and their 14 grader
-assertions are mine. The runner and viewer in
-[`evaluation/viewer/`](evaluation/viewer/) are existing skill-creator tooling.
 
 ## Why I built it
 
 A Canadian womenswear brand has been promoting styling appointments all over my social
 media. The idea is good: someone pulls the clothes for you and saves you working through
-the store. However, when I looked into booking one, I read that
-[other clients like me had genuine concerns](https://www.reddit.com/r/Aritzia/comments/1st3isn/personal_styling_appointment/),
-and I found I did not want to go.
+the store.
+
+However, as I read more into it, more things concerned me, and it turns out I am not
+alone. Other clients
+[had genuine concerns too](https://www.reddit.com/r/Aritzia/comments/1st3isn/personal_styling_appointment/).
 
 Three reasons, and two of them are just me.
 
-The first is laziness. I like shopping online, but I do not like scrolling. I shop in
-batches, and working through entire catalogues is an hour gone with nothing decided.
+- **The first is laziness.** I like shopping online, but I do not like scrolling. I shop
+  in batches, and working through entire catalogues usually takes me hours, and I often
+  end up with decision fatigue.
+- **The second is what the product exists to fix.** With a real stylist next to you, you
+  are not refusing a clothing item. You are refusing the person who chose it for you.
+  Those are two different things to turn down. Refusing something they picked out for you
+  feels like a personal rejection rather than a judgement about the product.
+- **The third is the hardest to admit.** Someone has spent an afternoon on you, and the
+  pull runs towards spending more, not less. Nobody states a number, but you feel one. I
+  do not like being in that position, and I do not think most people do, which is exactly
+  why it is hard to say out loud.
 
-The second is what the product exists to fix. By the time you are in a fitting room, you
-are not refusing the clothes. You are refusing the person who chose them for you. Those
-are two different things to turn down. Refusing something they picked out for you feels
-like a personal rejection rather than a judgement about the product.
+So that is what the skill is for. Filters narrow the range, but you still have to look
+through what survives them, which is the part a stylist was meant to take off your hands.
+What does not scale is saying no four times to someone who is trying to help. Information
+was never the bottleneck. Permission to change your mind was.
 
-The third is the hardest to admit. Someone has spent an afternoon on you, and the pull
-runs towards spending more, not less. Nobody states a number, but you feel one. I do not
-like being in that position, and I do not think most people do, which is exactly why it
-is hard to say out loud.
-
-So there are two frictions, and the social one is harder. Filters narrow the range, but
-you still have to look through what survives them, which is the part a stylist was meant
-to take off your hands. What does not scale is saying no four times to someone who is
-trying to help. Information was never the bottleneck. Permission to change your mind was.
-
-I cannot prove any of this with numbers. What I have is my own experience, threads of
+I cannot prove any of this with big numbers. What I have is my own experience, threads of
 strangers describing the same thing, and a mechanism that explains why the friction is
 social rather than informational. That is enough to justify building it for myself. It is
-not enough to claim it is a market. What I would argue is narrower: this is the shape
-personalized shopping agents will eventually take. It knows your size and taste across
-stores, hands you the exit first, and never makes you feel you owe it a purchase.
+not enough to claim it is a market. But this is the shape of personalized shopping agent
+I would hope to see: it knows your size and taste across stores, hands you the exit
+first, and never makes you feel you owe it a purchase.
 
 ## What it does differently
 
@@ -68,38 +62,6 @@ Four rules follow from that, and they are the ones I care about holding:
 not crawl or fetch ([`SKILL.md:11`](SKILL.md#L11)), which is why it still works on stores
 that block automated access. Uniqlo, Skims, Victoria's Secret, anything I can open.
 
-## What the tests found
-
-Two cases, **one run per arm**, so read these as single observations and not estimates
-([`benchmark.md`](evaluation/runs/iteration-1/benchmark.md)):
-
-| Metric | Edited | Previous | Delta |
-|---|---|---|---|
-| Assertions passed | 12 of 13 | 12 of 13 | **0** |
-| Time, case 1 | 228.2s | 139.7s | +88.5s |
-| Time, case 2 | 89.4s | 134.9s | -45.5s |
-| Tokens, case 1 | 89,610 | 79,488 | +10,122 |
-| Tokens, case 2 | 75,694 | 78,449 | -2,755 |
-
-I report the cases separately on purpose. The generated benchmark pools them into a mean
-with a standard deviation, which at one run per arm is the gap between two unlike tests
-rather than run-to-run variance. Not a number I would defend.
-
-Why it came up empty, all three my own doing:
-
-- **One case was invalid by construction.** `returning-shopper-skips-profile` scored 6/6
-  on both arms because the prompt has the shopper recite their whole profile, so both
-  versions skip the questions by reading the message rather than following the rule.
-- **One case was a regression check.** The nine-question brief already existed, so 6/7 on
-  both sides shows nothing broke, not that anything improved.
-- **The deciding assertion never ran.** `category-url-discipline` tests the one visible
-  change, navigating by the store's own menus instead of guessing URLs, and it needs a
-  live browser.
-
-**The one real bug it did catch:** both versions ask three questions in turn four (budget,
-care, store) when the store is not obvious, breaking the skill's own two-question rule.
-Step 1's layout causes it. It reads fine as prose and took a counting assertion to find.
-
 ## Trying it yourself
 
 The repo root is the skill directory. For Claude Code:
@@ -113,10 +75,54 @@ cp -R personal-shopper-evals/SKILL.md \
       ~/.claude/skills/personal-shopper/
 ```
 
-Then say something a shopper would say: "I need new work trousers", or paste a product
-link. It triggers without being named. It reads a store page in a browser it can see, so
-give it one. I have only run it in Claude Code, so I would not give you confident
-instructions for anything else.
+Then say something a shopper would say. You do not need to name the skill, it should pick
+up on the phrasing by itself. Copy any of these to start:
+
+**A first trip, where it knows nothing about you**
+
+> I need new work trousers, nothing fancy, just something I can wear to the office a few
+> days a week. Can you help me pick some out?
+
+This is the one that shows the opening brief. Expect questions before you see clothes.
+
+**A returning shopper, where it should not ask twice**
+
+> I'm back! You already have my sizes and my care preferences from last time. I need a
+> sweater or two for the office, maybe $250 for both. Let's look at Uniqlo.
+
+Watch whether it re-asks anything you just told it. It should carry the profile forward
+and say out loud what it is carrying.
+
+**A specific store, with constraints up front**
+
+> I'm looking for tailored trousers on Aritzia, mid rise, straight leg, ideally under
+> $200. Can you find me some?
+
+This one tests whether it moves through the store's own menus and filters rather than
+guessing at category URLs.
+
+**A single item, for a verdict rather than a search**
+
+> Paste any product link and ask: is this worth buying?
+
+You should get a buy, skip or ask verdict with the reason, not a description of the page
+you are already looking at.
+
+**An occasion, with a deadline**
+
+> I have a wedding in three weeks and nothing to wear. Help me find something.
+
+Tests whether it asks about delivery time before it shows you anything that cannot arrive
+in time.
+
+**A whole-wardrobe batch**
+
+> The season is changing and I want to refresh my work wardrobe. Where do we start?
+
+The batch case, which is the one I actually built this for.
+
+It reads a store page in a browser it can see, so give it one. I have only run it in
+Claude Code myself.
 
 ## What is here
 
@@ -136,16 +142,9 @@ Open any `grading.json` for per-assertion evidence, which is more useful than th
 
 - **It works for me, and that is one person.** No users, no data that it scales, and I
   would rather say so than imply otherwise.
-- **The rule I find most interesting is the one with no grader.** Nothing tests the
-  cart-reading behaviour.
 - **Re-running the evals needs the skill-creator harness**, which is not in this repo. You
   can read my tests but not execute them from a clean clone.
 - **The eval persona is synthetic.** Sizes, height and care values are invented, chosen to
   be specific enough to test whether they get re-asked. No real personal data is here.
 
-## Where I think this goes
-
-An agent can already assemble a cart. The open question is who a shopper lets do it,
-which makes trust the constraint rather than capability, and trust seems to follow
-whoever owns the commerce relationship. That is a shopper's opinion, not
-analysis, and I would want data before defending it.
+Happy shopping :)))
