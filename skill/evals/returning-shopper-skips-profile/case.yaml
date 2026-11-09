@@ -1,7 +1,0 @@
-schema_version: "1.1"
-name: returning-shopper-skips-profile
-expected_outcome: |
-  Recognises that sizes, care, height, neckline rule, colours and fit preference are
-  already held, and does not ask any of them again. Says out loud what it is carrying
-  forward so the shopper can correct it. Reaches shopping quickly rather than running
-  the full nine-question brief on someone whose profile it already has.
