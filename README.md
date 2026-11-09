@@ -35,7 +35,7 @@ problem is mostly solved: every store has filters. Saying no four times to a per
 is trying to help you is the part that does not scale, and it is the reason I would
 rather do this at 11pm with no one watching.
 
-Three rules in `skill/SKILL.md` exist because of that, and they are the ones I care
+Four rules in `skill/SKILL.md` exist because of that, and they are the ones I care
 about holding:
 
 - **It gives you the exit before you need it.** The opening message tells you that you
@@ -49,8 +49,9 @@ about holding:
   in three exchanges instead of seven ([`SKILL.md:23`](skill/SKILL.md#L23)), because
   somebody who buys in batches should not re-answer the same intake every season.
 - **It stops at the cart and never checks out** ([`SKILL.md:223`](skill/SKILL.md#L223)).
-  This is the same argument as the one above. A cart is reversible, so filling one costs
-  the shopper nothing to undo, and I stay the person who says yes and pays. An agent
+  The skill's own reason is that a cart is reversible, which is the same argument as the
+  deletion rule above. Filling a cart costs the shopper nothing to undo, and I stay the
+  person who says yes and pays. An agent
   that completes the purchase would reintroduce exactly the pressure I was trying to
   get rid of.
 
