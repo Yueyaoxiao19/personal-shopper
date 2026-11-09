@@ -3,13 +3,94 @@
 An agent skill that acts as a personal shopper for clothing, and the eval cases I
 wrote to find out whether my edits to it actually made it better.
 
+The short version of the result: they did not. The run found no improvement, cost went
+up, and one of my three eval cases turned out to be measuring nothing. That finding is
+the reason this repository exists.
+
 The cases and the grader assertions in `skill/evals/` are mine. The runner and the
 HTML viewer in `eval-viewer/` are existing skill-creator tooling, included so the runs
 reproduce.
 
-The short version of the result: they did not. The harness found no improvement, cost
-went up, and one of my three eval cases turned out to be measuring nothing. That
-finding is the reason this repository exists.
+## Why I built it
+
+Aritzia has been pushing personal styling appointments, and I never got offered one. As
+far as I can tell you have to ask, and then keep asking the same stylist until it turns
+into a relationship. So before booking one I went looking for what the appointments are
+actually like, and the hesitations people describe are not about clothes at all. They
+are afraid of saying no to someone who just spent an hour pulling things for them. They
+worry the stylist will not listen. They assume there is a spend minimum that nobody
+states out loud. And the available times do not match when they are free to shop.
+
+That last paragraph is what I read in a customer forum, not anything the company
+publishes, and I have not verified any of it. I am including it because it is what
+actually sent me to build this, not as a claim about how the service works.
+
+My own two reasons are simpler. I do not like trying things on in a store, so I shop
+online. And I shop in batches: nothing for months, then three or four outfits in one
+afternoon, usually when a season turns or when I already have something in mind. The
+batch is where the effort is, and it is the part no store experience is built around.
+
+So the friction I set out to remove is social rather than informational. The information
+problem is mostly solved: every store has filters. Saying no four times to a person who
+is trying to help you is the part that does not scale, and it is the reason I would
+rather do this at 11pm with no one watching.
+
+Three rules in `skill/SKILL.md` exist because of that, and they are the ones I care
+about holding:
+
+- **It gives you the exit before you need it.** The opening message tells you that you
+  can type your own answer and can say "that's enough" at any point
+  ([`SKILL.md:39`](skill/SKILL.md#L39)). A question is only optional if refusing it is
+  free, and a human stylist cannot make it free.
+- **It reads what you deleted from the cart instead of asking you why.**
+  ([`SKILL.md:325`](skill/SKILL.md#L325)) People justify their stated preferences. They
+  do not justify a delete, which is what makes a delete better evidence.
+- **It asks for sizes and care once and never again.** A repeat trip reaches the store
+  in three exchanges instead of seven ([`SKILL.md:23`](skill/SKILL.md#L23)), because
+  somebody who buys in batches should not re-answer the same intake every season.
+- **It stops at the cart and never checks out** ([`SKILL.md:223`](skill/SKILL.md#L223)).
+  This is the same argument as the one above. A cart is reversible, so filling one costs
+  the shopper nothing to undo, and I stay the person who says yes and pays. An agent
+  that completes the purchase would reintroduce exactly the pressure I was trying to
+  get rid of.
+
+Two of the first three are held to graders. The exit rule is checked by
+`01-welcome-before-questions`, and the profile rule by all six assertions in
+`returning-shopper-skips-profile`. The cart-reading rule has no grader at all, which
+means the design decision I find most interesting is the one I have no evidence for.
+That gap is the honest summary of where this project got to.
+
+### Why it is not built for one store
+
+Aritzia started this, but a stylist who only works at one shop is not much of a
+stylist. The same thing should work at Uniqlo, at Skims, at Victoria's Secret, or
+anywhere else I can open in a browser.
+
+That is an architectural choice rather than a wish. The skill reads the page already in
+front of the shopper and deliberately does not crawl, fetch or compare catalogues
+([`SKILL.md:11`](skill/SKILL.md#L11)), which is the reason it still works on stores
+that block automated access. Most shopping tools break on exactly those stores. This
+one does not have to, because it never asks the store for anything.
+
+It is also the thing the eval harness is worst at proving. `category-url-discipline`
+is the case written to check that it navigates by the store's own menus and filters
+instead of guessing at URLs, and it is the case that cannot run without a live browser.
+The most important behaviour is the least tested one.
+
+### Where I think this is going
+
+Agentic shopping is early enough that the open question is not whether an agent can
+assemble a cart. It can. The open question is who a shopper will let do it.
+
+My own hesitation about handing this task to a large platform is not about model
+quality. It is that I do not think of those companies as commerce, and the agent that
+shops for me sits closer to my money than almost anything else I use. So the
+constraint on agentic commerce looks to me like trust rather than capability, and trust
+seems to follow whoever already owns the commerce relationship rather than whoever has
+the best model.
+
+That is an opinion formed as a shopper, not a market analysis, and I would want data
+before defending it.
 
 ## The claim being tested
 
