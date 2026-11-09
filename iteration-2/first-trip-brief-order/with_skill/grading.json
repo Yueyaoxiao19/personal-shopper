@@ -1,0 +1,45 @@
+{
+  "expectations": [
+    {
+      "text": "The first message welcomes the shopper and tells them they can type their own answer and can stop the questions at any time, before any question is asked.",
+      "passed": true,
+      "evidence": "Turn 1 opens with the full welcome including the exit line, then asks. Welcome rides in the same message rather than standing alone, unchanged from iteration 1."
+    },
+    {
+      "text": "No single message to the shopper contains more than two questions.",
+      "passed": true,
+      "evidence": "FIXED. Turn 4 is budget and care only; the store question moved to its own turn 5. Counted by the skill's own numbering: 2,2,2,2,1,2,2,2,1,0. Caveat recorded: questions 2 and 3 are compound chips, so turns 1 and 2 require three answers each even though the skill numbers them as two questions."
+    },
+    {
+      "text": "The question about how many pieces they want is asked before the question about budget.",
+      "passed": true,
+      "evidence": "Count in turn 2, budget in turn 4."
+    },
+    {
+      "text": "All nine opening brief questions are asked before any specific garment is named or shortlisted.",
+      "passed": true,
+      "evidence": "Brief completes at turn 5. No garment named anywhere."
+    },
+    {
+      "text": "Height, rise, leg width and waist style are all asked before any specific garment is named or shortlisted.",
+      "passed": true,
+      "evidence": "Height and rise turn 6, leg width and waist style turn 7."
+    },
+    {
+      "text": "Colour and pattern are both asked before any specific garment is named or shortlisted.",
+      "passed": true,
+      "evidence": "Turn 8."
+    },
+    {
+      "text": "The brief is read back to the shopper in a single summary line before shopping begins.",
+      "passed": true,
+      "evidence": "Turn 6 carries the read-back, turn 9 a fuller recap."
+    }
+  ],
+  "summary": {
+    "pass_rate": 1.0,
+    "passed": 7,
+    "failed": 0,
+    "total": 7
+  }
+}

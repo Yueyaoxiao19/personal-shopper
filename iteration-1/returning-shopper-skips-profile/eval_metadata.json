@@ -1,0 +1,12 @@
+{
+  "eval_name": "returning-shopper-skips-profile",
+  "prompt": "ok im back! you already have all my stuff from last time: L on top, 31 on the bottom, 5'9\", nothing dry-clean-only, no turtlenecks, i basically only wear neutrals, and i like things a bit relaxed not fitted. this time i need a sweater or two for the office, maybe $250 for both, lets look at uniqlo",
+  "assertions": [
+    "The shopper is never asked for their top size or their bottom size.",
+    "The shopper is never asked what washing or care they want.",
+    "The shopper is never asked their height.",
+    "The shopper is never asked which necklines to skip and never asked which colours they wear.",
+    "Before shopping begins, the response states out loud which stored details it is carrying forward, so the shopper can correct them.",
+    "No more than three question-asking messages are sent before reaching the point of opening the store."
+  ]
+}

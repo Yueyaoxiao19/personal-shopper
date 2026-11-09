@@ -1,0 +1,45 @@
+{
+  "expectations": [
+    {
+      "text": "The first message welcomes the shopper and tells them they can type their own answer and can stop the questions at any time, before any question is asked.",
+      "passed": true,
+      "evidence": "Turn 1 opens with the welcome including 'you can always type your own answer' and 'just say \"that's enough\"', then asks. The welcome rides in the same message as questions 1 and 2 rather than standing alone."
+    },
+    {
+      "text": "No single message to the shopper contains more than two questions.",
+      "passed": false,
+      "evidence": "Turn 4 asks three: budget, washing, and where to shop. This is exactly how Step 1 lays out turn four when the store is not already evident, so the skill's own layout breaks its own rule."
+    },
+    {
+      "text": "The question about how many pieces they want is asked before the question about budget.",
+      "passed": true,
+      "evidence": "Count is asked in turn 2, budget in turn 4."
+    },
+    {
+      "text": "All nine opening brief questions are asked before any specific garment is named or shortlisted.",
+      "passed": true,
+      "evidence": "Brief completes by turn 4. No garment is named anywhere in the transcript; the run stops at the store."
+    },
+    {
+      "text": "Height, rise, leg width and waist style are all asked before any specific garment is named or shortlisted.",
+      "passed": true,
+      "evidence": "Height and rise in turn 5, leg width and waist style in turn 6, both before the store is opened."
+    },
+    {
+      "text": "Colour and pattern are both asked before any specific garment is named or shortlisted.",
+      "passed": true,
+      "evidence": "Turn 7 asks both."
+    },
+    {
+      "text": "The brief is read back to the shopper in a single summary line before shopping begins.",
+      "passed": true,
+      "evidence": "Read back twice, once mid-brief and once in the final turn before opening the store."
+    }
+  ],
+  "summary": {
+    "pass_rate": 0.8571428571428571,
+    "passed": 6,
+    "failed": 1,
+    "total": 7
+  }
+}

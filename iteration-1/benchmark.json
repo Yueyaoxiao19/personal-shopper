@@ -1,0 +1,277 @@
+{
+  "metadata": {
+    "skill_name": "personal-shopper",
+    "skill_path": "./skill",
+    "executor_model": "not recorded",
+    "analyzer_model": "not recorded",
+    "timestamp": "2026-11-09T00:32:42Z",
+    "evals_run": [
+      "first-trip-brief-order",
+      "returning-shopper-skips-profile"
+    ],
+    "runs_per_configuration": 1
+  },
+  "runs": [
+    {
+      "eval_id": "first-trip-brief-order",
+      "eval_name": "first-trip-brief-order",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.8571428571428571,
+        "passed": 6,
+        "failed": 1,
+        "total": 7,
+        "time_seconds": 228.2,
+        "tokens": 89610,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "The first message welcomes the shopper and tells them they can type their own answer and can stop the questions at any time, before any question is asked.",
+          "passed": true,
+          "evidence": "Turn 1 opens with the welcome including 'you can always type your own answer' and 'just say \"that's enough\"', then asks. The welcome rides in the same message as questions 1 and 2 rather than standing alone."
+        },
+        {
+          "text": "No single message to the shopper contains more than two questions.",
+          "passed": false,
+          "evidence": "Turn 4 asks three: budget, washing, and where to shop. This is exactly how Step 1 lays out turn four when the store is not already evident, so the skill's own layout breaks its own rule."
+        },
+        {
+          "text": "The question about how many pieces they want is asked before the question about budget.",
+          "passed": true,
+          "evidence": "Count is asked in turn 2, budget in turn 4."
+        },
+        {
+          "text": "All nine opening brief questions are asked before any specific garment is named or shortlisted.",
+          "passed": true,
+          "evidence": "Brief completes by turn 4. No garment is named anywhere in the transcript; the run stops at the store."
+        },
+        {
+          "text": "Height, rise, leg width and waist style are all asked before any specific garment is named or shortlisted.",
+          "passed": true,
+          "evidence": "Height and rise in turn 5, leg width and waist style in turn 6, both before the store is opened."
+        },
+        {
+          "text": "Colour and pattern are both asked before any specific garment is named or shortlisted.",
+          "passed": true,
+          "evidence": "Turn 7 asks both."
+        },
+        {
+          "text": "The brief is read back to the shopper in a single summary line before shopping begins.",
+          "passed": true,
+          "evidence": "Read back twice, once mid-brief and once in the final turn before opening the store."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": "returning-shopper-skips-profile",
+      "eval_name": "returning-shopper-skips-profile",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 6,
+        "failed": 0,
+        "total": 6,
+        "time_seconds": 89.4,
+        "tokens": 75694,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "The shopper is never asked for their top size or their bottom size.",
+          "passed": true,
+          "evidence": "Neither size appears as a question in any turn."
+        },
+        {
+          "text": "The shopper is never asked what washing or care they want.",
+          "passed": true,
+          "evidence": "Care is carried forward from the profile and named in the opening turn, never asked."
+        },
+        {
+          "text": "The shopper is never asked their height.",
+          "passed": true,
+          "evidence": "Height never asked."
+        },
+        {
+          "text": "The shopper is never asked which necklines to skip and never asked which colours they wear.",
+          "passed": true,
+          "evidence": "Both carried forward from the profile; the no-turtlenecks rule is restated, not re-asked."
+        },
+        {
+          "text": "Before shopping begins, the response states out loud which stored details it is carrying forward, so the shopper can correct them.",
+          "passed": true,
+          "evidence": "Turn 1 lists the stored profile back and invites correction."
+        },
+        {
+          "text": "No more than three question-asking messages are sent before reaching the point of opening the store.",
+          "passed": true,
+          "evidence": "Three question turns, then a brief-back turn, then the store."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": "first-trip-brief-order",
+      "eval_name": "first-trip-brief-order",
+      "configuration": "old_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.8571428571428571,
+        "passed": 6,
+        "failed": 1,
+        "total": 7,
+        "time_seconds": 139.7,
+        "tokens": 79488,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "The first message welcomes the shopper and tells them they can type their own answer and can stop the questions at any time, before any question is asked.",
+          "passed": true,
+          "evidence": "Turn 1 opens with the welcome including 'you can always type your own answer' and 'just say \"that's enough\"', then asks. The welcome rides in the same message as questions 1 and 2 rather than standing alone."
+        },
+        {
+          "text": "No single message to the shopper contains more than two questions.",
+          "passed": false,
+          "evidence": "Turn 4 asks three: budget, washing, and where to shop. This is exactly how Step 1 lays out turn four when the store is not already evident, so the skill's own layout breaks its own rule."
+        },
+        {
+          "text": "The question about how many pieces they want is asked before the question about budget.",
+          "passed": true,
+          "evidence": "Count is asked in turn 2, budget in turn 4."
+        },
+        {
+          "text": "All nine opening brief questions are asked before any specific garment is named or shortlisted.",
+          "passed": true,
+          "evidence": "Brief completes by turn 4. No garment is named anywhere in the transcript; the run stops at the store."
+        },
+        {
+          "text": "Height, rise, leg width and waist style are all asked before any specific garment is named or shortlisted.",
+          "passed": true,
+          "evidence": "Height and rise in turn 5, leg width and waist style in turn 6, both before the store is opened."
+        },
+        {
+          "text": "Colour and pattern are both asked before any specific garment is named or shortlisted.",
+          "passed": true,
+          "evidence": "Turn 7 asks both."
+        },
+        {
+          "text": "The brief is read back to the shopper in a single summary line before shopping begins.",
+          "passed": true,
+          "evidence": "Read back twice, once mid-brief and once in the final turn before opening the store."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": "returning-shopper-skips-profile",
+      "eval_name": "returning-shopper-skips-profile",
+      "configuration": "old_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 6,
+        "failed": 0,
+        "total": 6,
+        "time_seconds": 134.9,
+        "tokens": 78449,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "The shopper is never asked for their top size or their bottom size.",
+          "passed": true,
+          "evidence": "Neither size appears as a question in any turn."
+        },
+        {
+          "text": "The shopper is never asked what washing or care they want.",
+          "passed": true,
+          "evidence": "Care is carried forward from the profile and named in the opening turn, never asked."
+        },
+        {
+          "text": "The shopper is never asked their height.",
+          "passed": true,
+          "evidence": "Height never asked."
+        },
+        {
+          "text": "The shopper is never asked which necklines to skip and never asked which colours they wear.",
+          "passed": true,
+          "evidence": "Both carried forward from the profile; the no-turtlenecks rule is restated, not re-asked."
+        },
+        {
+          "text": "Before shopping begins, the response states out loud which stored details it is carrying forward, so the shopper can correct them.",
+          "passed": true,
+          "evidence": "Turn 1 lists the stored profile back and invites correction."
+        },
+        {
+          "text": "No more than three question-asking messages are sent before reaching the point of opening the store.",
+          "passed": true,
+          "evidence": "Three question turns, then a brief-back turn, then the store."
+        }
+      ],
+      "notes": []
+    }
+  ],
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 0.9286,
+        "stddev": 0.101,
+        "min": 0.8571,
+        "max": 1.0
+      },
+      "time_seconds": {
+        "mean": 158.8,
+        "stddev": 98.1464,
+        "min": 89.4,
+        "max": 228.2
+      },
+      "tokens": {
+        "mean": 82652.0,
+        "stddev": 9840.098,
+        "min": 75694,
+        "max": 89610
+      }
+    },
+    "old_skill": {
+      "pass_rate": {
+        "mean": 0.9286,
+        "stddev": 0.101,
+        "min": 0.8571,
+        "max": 1.0
+      },
+      "time_seconds": {
+        "mean": 137.3,
+        "stddev": 3.3941,
+        "min": 134.9,
+        "max": 139.7
+      },
+      "tokens": {
+        "mean": 78968.5,
+        "stddev": 734.6839,
+        "min": 78449,
+        "max": 79488
+      }
+    },
+    "delta": {
+      "pass_rate": "+0.00",
+      "time_seconds": "+21.5",
+      "tokens": "+3684"
+    }
+  },
+  "notes": [
+    "Both configurations scored 92.9%. Not one of the 13 assertions separates the new version from the snapshot, so this iteration proves no improvement.",
+    "returning-shopper-skips-profile is compromised by its own prompt: the shopper recites their whole profile in the message, so both arms skip the questions by reading the message rather than by following the rule. It tests nothing about the 'Skip what you already know' edit. Rewrite it to supply the profile out of band before trusting 6/6.",
+    "first-trip-brief-order is a regression check by construction. The nine-question brief already existed in the snapshot, so 6/7 on both sides means nothing broke, not that anything improved.",
+    "The one shared failure is a genuine defect the eval earned: turn four asks three questions (budget, care, store) whenever the store is not already evident, which breaks the skill's own 'two questions at a time, never more' rule. Both versions do it, because Step 1's layout causes it.",
+    "The only visible behavioural difference is unmeasured. The new run states it will use the store's own menu and filters rather than guessing a category URL; the snapshot run says nothing of the kind. The assertion that would catch this lives in category-url-discipline, which did not run because it needs a live browser.",
+    "Cost moved the wrong way on case 1: 89,610 tokens and 228s for the new version against 79,488 and 140s for the snapshot. The added navigation section is the likely cause. Worth watching if SKILL.md keeps growing."
+  ]
+}

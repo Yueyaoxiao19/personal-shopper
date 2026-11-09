@@ -1,0 +1,40 @@
+{
+  "expectations": [
+    {
+      "text": "The shopper is never asked for their top size or their bottom size.",
+      "passed": true,
+      "evidence": "Neither size appears as a question in any turn."
+    },
+    {
+      "text": "The shopper is never asked what washing or care they want.",
+      "passed": true,
+      "evidence": "Care is carried forward from the profile and named in the opening turn, never asked."
+    },
+    {
+      "text": "The shopper is never asked their height.",
+      "passed": true,
+      "evidence": "Height never asked."
+    },
+    {
+      "text": "The shopper is never asked which necklines to skip and never asked which colours they wear.",
+      "passed": true,
+      "evidence": "Both carried forward from the profile; the no-turtlenecks rule is restated, not re-asked."
+    },
+    {
+      "text": "Before shopping begins, the response states out loud which stored details it is carrying forward, so the shopper can correct them.",
+      "passed": true,
+      "evidence": "Turn 1 lists the stored profile back and invites correction."
+    },
+    {
+      "text": "No more than three question-asking messages are sent before reaching the point of opening the store.",
+      "passed": true,
+      "evidence": "Three question turns, then a brief-back turn, then the store."
+    }
+  ],
+  "summary": {
+    "pass_rate": 1.0,
+    "passed": 6,
+    "failed": 0,
+    "total": 6
+  }
+}

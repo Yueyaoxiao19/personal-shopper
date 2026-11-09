@@ -1,0 +1,8 @@
+schema_version: "1.1"
+name: first-trip-brief-order
+expected_outcome: |
+  Opens with a welcome that tells the shopper they can tap answers, type their own,
+  or stop the questions at any point. Then asks the opening brief two questions per
+  turn, never three. Asks how many pieces before asking about budget. Does not
+  shortlist or name any garment before running the bottoms category kit, which covers
+  height, rise, leg width and waist style, plus colour and pattern.

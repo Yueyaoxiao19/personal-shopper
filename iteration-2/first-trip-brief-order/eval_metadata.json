@@ -1,0 +1,13 @@
+{
+  "eval_name": "first-trip-brief-order",
+  "prompt": "hey so i need new work pants, nothing fancy, just something i can wear to the office a few days a week. can you help me pick some out",
+  "assertions": [
+    "The first message welcomes the shopper and tells them they can type their own answer and can stop the questions at any time, before any question is asked.",
+    "No single message to the shopper contains more than two questions.",
+    "The question about how many pieces they want is asked before the question about budget.",
+    "All nine opening brief questions are asked before any specific garment is named or shortlisted.",
+    "Height, rise, leg width and waist style are all asked before any specific garment is named or shortlisted.",
+    "Colour and pattern are both asked before any specific garment is named or shortlisted.",
+    "The brief is read back to the shopper in a single summary line before shopping begins."
+  ]
+}
