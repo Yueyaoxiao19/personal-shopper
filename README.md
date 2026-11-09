@@ -114,11 +114,11 @@ block that. Discovery stays with you, and this handles everything after you land
 The repo root is the skill directory. For Claude Code:
 
 ```
-git clone https://github.com/Yueyaoxiao19/personal-shopper-evals.git
+git clone https://github.com/Yueyaoxiao19/personal-shopper.git
 mkdir -p ~/.claude/skills/personal-shopper
-cp -R personal-shopper-evals/SKILL.md \
-      personal-shopper-evals/references \
-      personal-shopper-evals/scripts \
+cp -R personal-shopper/SKILL.md \
+      personal-shopper/references \
+      personal-shopper/scripts \
       ~/.claude/skills/personal-shopper/
 ```
 
